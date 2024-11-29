@@ -3,22 +3,26 @@ from rest_framework.generics import (
     CreateAPIView,
     RetrieveUpdateDestroyAPIView,
 )
+from drf_spectacular.utils import extend_schema
 from .serializers import TeamSerializer
 from .models import Team
 
+@extend_schema(tags=['Equipos'], 
+               description="Obtiene la lista de equipos o crea un nuevo equipo.",)
 class ListTeamView(ListAPIView, CreateAPIView):
-    """
-    Obtiene la lista de equipos o crea un nuevo equipo.
-    """
     allowed_methods = ['GET', 'POST']
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
-    
+
+@extend_schema(tags=['Equipos'],
+               description="Obtiene, actualiza o elimina un equipo.")        
 class DetailTeamView(RetrieveUpdateDestroyAPIView):
     allowed_methods = ['GET', 'PUT', 'DELETE']
     serializer_class = TeamSerializer
     queryset = Team.objects.all()
 
+@extend_schema(tags=['Equipos'],
+               description="Obtiene la lista de equipos de una liga.") 
 # filtrar eqipos por liga (liga id) 
 class ListTeamByLeagueView(ListAPIView):
     allowed_methods = ['GET']

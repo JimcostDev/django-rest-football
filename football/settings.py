@@ -138,3 +138,14 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ),
 }
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Documentación de la API de Football.',
+    'DESCRIPTION': 'API para la gestión de ligas y equipos de fútbol.',
+    'VERSION': '1.0.0',
+    'TAGS': [
+        {'name': 'Equipos', 'description': 'Operaciones relacionadas con equipos.'},
+        {'name': 'Ligas', 'description': 'Operaciones relacionadas con ligas.'},
+    ],
+}
